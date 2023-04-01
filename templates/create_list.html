@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+    <form action="/create_list" method="post">
+
+        <div class="mb-3">
+        <input class="form-control mx-auto w-25 border text-white" id="title" name="title" placeholder="Title" required>
+        <small id="emailHelp" class="form-text text-white-50">Title of the list you wish to create.</small>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+{% endblock %}

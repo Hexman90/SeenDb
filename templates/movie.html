@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Movie
+{% endblock %}
+
+{% block main %}
+
+{%if movie_data %}
+<script>
+  var movie_data = JSON.parse('{{ movie_data|tojson|safe }}');
+</script>
+
+<div class="container">
+  <div class="row text-start">
+    <div class="col-md-8 text-white">
+      <h2 class="mb-0">{{ movie_data["title"] }} <small class="text-white-50">{{ movie_data["year"] }}</small></h2>
+      <p class="text-white-50">{{ movie_data["genres"] }}</p>
+    </div>
+    <div class="col-md-2 mt-4">
+      {% if session['user_id'] %}
+        {% for list in session["lists"] %}
+          {% if list[1] == "Watched Movies" %}
+              <button type="button" class="btn btn-sm addtolist {% if movie_data['id'] in watched_movies %} btn-success disabled {% else %} btn-outline-success {% endif %}" id={{ list[0] }}>Seen</button>
+          {% endif %}
+        {% endfor %}
+  
+        {% if session["lists"]|length >= 2 %}
+          <div class="btn-group">
+              <button class="btn-sm btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Add to List</button>
+              <ul class="dropdown-menu dropdown-menu-dark">
+                  {% for list in session["lists"] %}
+                      {% if list[1] != "Watched Movies" %}
+                          <li><a class="dropdown-item text-white-50 addtolist" id="{{ list[0] }}">{{ list[1] }}</a></li>
+                      {% endif %}
+                  {% endfor %}
+              </ul>
+          </div>
+        {% endif %}
+      {% endif %}
+  
+    </div>
+    <div class="col-md-2 text-white">
+      <h4 class="mb-0 text-warning">IMDb Rating</h4>
+      <p class="lead"><i class="fas fa-star"></i> {{ movie_data["imDbRating"] }}/10</p>
+    </div>
+  </div>
+  
+  <div class="row mb-3">
+    <div class="col-md-4">
+      <img src="{{ movie_data['image'] }}" alt="Movie Poster" class="img-fluid mb-3" style="object-fit: cover; width: 100%; height: 100%;">
+    </div>
+    <div class="col-md-8">
+      <div class="embed-responsive embed-responsive-16by9 mb-3">
+        <iframe class="embed-responsive-item" src="{{ movie_data['trailer']['linkEmbed'] }}" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" scrolling="no"></iframe>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row mb-2">
+    <div class="card text-bg-dark border-primary">
+      <div class="card-body">
+        <h5 class="card-title">Plot</h5>
+        <h6 class="card-subtitle mb-2 text-white-50">{{ movie_data["plot"] }}</h6>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-md-12 text-white">
+      <h2 style="color: green;">Similar Movies</h2>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6">
+        {% for movie in movie_data["similars"] %}
+        <div class="col mb-4">
+          <div class="card crd text-bg-dark mb-3 h-100">
+            <a onclick="location.href='{{ url_for("movie", id=movie["id"]) }}';" style="cursor: pointer;">
+              <img src="{{ movie['image'] }}" alt="{{ movie['title'] }}" class="card-img-top">
+            <div class="card-body crd">
+              <h5 class="card-title crd">{{ movie["title"] }}</h5>
+            </div>
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endif%}
+
+{% endblock %}

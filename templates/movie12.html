@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Movie
+{% endblock %}
+
+{% block main %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-8  text-start text-white">
+      <h2>{{ movie_data["title"]}} ({{ movie_data["year"]}})</h2>
+      <p>{{ movie_data["genres"] }}</p>
+      <div class="row">
+        <div class="col-md-6">
+          <img src={{ movie_data["image"] }} alt="Movie Poster" class="img-fluid mb-3">
+          <p>{{ movie_data["plot"] }}</p>
+        </div>
+        <div class="col-md-6 ">
+          <div class="embed-responsive embed-responsive-16by9 mb-3">
+            <iframe class="embed-responsive-item" src={{ movie_data['trailer']['linkEmbed'] }} width=900 height=603 frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" scrolling="no"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 text-white">
+      <h4>iMDB Rating</h4>
+      <i class="fas fa-star"></i> {{ movie_data["imDbRating"] }}/10
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col">
+      <h2 style="color: green;">Similar Movies</h2>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5">
+        {% for movie in movie_data["similars"] %}
+        <div class="col mb-4">
+          <div class="card text-white bg-dark mb-3 h-100">
+            <a onclick="location.href='{{ url_for("movie", id=movie["id"]) }}';" style="cursor: pointer;">
+              <img src={{ movie["image"] }} alt={{ movie["title"] }} class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">{{ movie["title"] }}</h5>
+            </div>
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

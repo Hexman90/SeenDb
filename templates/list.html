@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    List
+{% endblock %}
+
+{% block main %}
+
+<h2 style="color: green;" id="list_name">{{ name }}</h2>
+{% for movie in movies %}
+<div class="card mb-3 text-bg-dark" style="max-width: 700px; margin: auto;">
+    <div class="row">
+      <div class="col-md-4">
+        <img src="{{ movie[8] }}" class="img-fluid rounded-start" alt="{{ movie[1] }}">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title text-start"><a href='{{ url_for("movie", id=movie[0]) }}'>{{ movie[1] }}</a><small class="text-white-50"> {{ movie[2] }}</small></h5>
+          <p class="card-text text-start text-white-50">{{ movie[4] }}  <i class="fas fa-star"></i>{{ movie[3] }}</p>
+          <p class="card-text text-start text-white-50">{{ movie[5] }}</p>
+          <p class="card-text text-start">Stars: <small class="text-success">{{ movie[6] }}</small></p>
+          <div class="text-end">
+            <button class="btn btn-danger btn-sm removefromlist" type="button" id="{{ movie[0] }}">Remove From List</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+
+{% endblock %}

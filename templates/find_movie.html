@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Find Title
+{% endblock %}
+
+{% block main %}
+      <table class="table table-dark table-hover">
+        <thread>
+          <tr>
+              <td scope="col" class="">Poster</td>
+              <td scope="col" class="text-start">Title</td>
+              <td scope="col" class="text-start"></td>
+          </tr>
+        </thread>
+      </tbody>
+        {% for movie in movies %}
+        <tr onclick="location.href='{{ url_for("movie", id=movie["id"]) }}';" style="cursor: pointer;">
+            {% if movie["image"] | length %}
+              <td><img src="{{ movie['image'] }}" style="width:70px;height:100px;"></td>
+            {% else %}
+              <td></td> 
+            {% endif %}
+              <td class="text-start">
+                <ul>{{ movie["title"] }}</ul>
+                <ul class="text-secondary">{{ movie["description"][:4] }}</ul>
+                <ul class="text-secondary">{{ movie["description"][5:] }}</ul>
+              </td>
+              {% if movie["id"] in watched_movies %}
+                <td class="text-success text-start"><h5>Seen</h5></td>
+              {% else %}
+                <td class="text-success"></td>
+              {% endif %}
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+{% endblock %}
