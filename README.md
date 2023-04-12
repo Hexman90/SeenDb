@@ -1,4 +1,4 @@
-# SeenDb# **SEENDB**
+# SeenDb#
 
 
 ## Video Demo: (https://youtu.be/R0OCHRXqLvU)
