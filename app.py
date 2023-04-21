@@ -6,7 +6,7 @@ from helpers import login_required, query_api, query_db, password_check, get_wat
 
 # Configure application
 app = Flask(__name__)
-app.secret_key = "23156t754jnsdlkmas48"
+app.secret_key = "secret_key"
 
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
