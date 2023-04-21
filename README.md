@@ -35,7 +35,7 @@ Remove movies from your custom movie lists by going to the list and clicking the
 
 
 #### Technologies Used:
-Python Flask framework
+Python Flask framework,
 HTML, CSS, and JavaScript
 SQLite database
 
