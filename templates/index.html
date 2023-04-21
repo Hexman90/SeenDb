@@ -10,6 +10,7 @@
       <h2 style="color: green;">Box Office</h2>
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5">
         {% for movie in box_office %}
+          {% if movie["media_type"] == "movie" %}
         <div class="col mb-4">
           <div class="card text-bg-dark mb-3 h-100">
             <a onclick="location.href='{{ url_for("movie", id=movie["id"]) }}';" style="cursor: pointer;">
@@ -20,6 +21,7 @@
             </a>
           </div>
         </div>
+          {% endif %}
         {% endfor %}
       </div>
     </div>
