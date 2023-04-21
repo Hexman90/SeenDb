@@ -1,8 +1,12 @@
 # SeenDb
 
+## Video Demo: (https://youtu.be/R0OCHRXqLvU)
+
+
 ## Description:
 This is a web application that allows users to search for movies, create custom movie lists, and keep track of the movies they have watched. Once a user registers, an automatic watched movies list is created for them.
 
+This app was developed as a final project for CS50 Introduction to Computer Science.
 
 ### Features
 Search movies: Users can search for movies by title, and the search results include the movie title, year, and poster.
