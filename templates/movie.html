@@ -76,7 +76,7 @@
             <a onclick="location.href='{{ url_for("movie", id=movie["id"]) }}';" style="cursor: pointer;">
               <img src="{{ movie['image'] }}" alt="{{ movie['title'] }}" class="card-img-top">
             <div class="card-body crd">
-              <h5 class="card-title crd">{{ movie["title"] }}</h5>
+              <h5 class="card-title crd {% if movie['id'] in watched_movies %} text-success {%  endif %}">{{ movie["title"] }} <span class="text-white-50">{{ movie["release_date"][:4] }}</span></h5>
             </div>
             </a>
           </div>
