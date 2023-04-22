@@ -15,7 +15,7 @@ Create custom movie lists: Users can create their own movie lists and add movies
 
 Watched movies list: Once a user registers, an automatic watched movies list is created for them. Users can add movies to this list with a single click using the "Seen" button on the movie page.
 
-Single-click watched movies: After adding a movie to the watched list, the next time the user searches for that movie, the web app indicates that the user has already watched the movie.
+Single-click watched movies: After adding a movie to the watched list, the web app will indicate that the user has already watched the movie both when searching for the movie again and when similar movies are suggested. This feature helps users easily keep track of the movies they have watched and avoid rewatching them.
 
 Trending movies: On the homepage, users can see a list of box office movies.
 
