@@ -5,7 +5,7 @@ from password_strength import PasswordPolicy
 from flask import redirect, session
 from functools import wraps
 
-API="k_m5xsv3w1"
+API="YOUR API KEY"
 
 def login_required(f):
     """
